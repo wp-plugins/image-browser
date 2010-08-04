@@ -5,7 +5,7 @@ Plugin URI: http://blog.robfelty.com/plugins
 Tags: image, images, meta, search, shortcode
 Requires at least: 2.8
 Tested up to: 3.0.1
-Stable tag: 0.1
+Stable tag: 0.2
 
 Allows you to browse all images on your blog by date and/or category, with the
 ability to also search image captions for keywords.
@@ -99,6 +99,9 @@ posts with category 10
 yes.
 
 == CHANGELOG ==
+
+= 0.2 (2010.08.04) =
+* fixed form display
 
 = 0.1 (2010.08.04) =
 * Initial release

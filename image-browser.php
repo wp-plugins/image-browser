@@ -4,11 +4,11 @@ Plugin Name: Image Browser
 Plugin URI: http://blog.robfelty.com/plugins/image-browser
 Description: Allows you to browse all images on your blog easily <a href='options-general.php?page=image-browser'>Settings</a>
 Author: Robert Felty
-Version: 0.1
+Version: 0.2
 Author URI: http://robfelty.com
 */ 
 global $ImageBrowserVersion;
-$ImageBrowserVersion = '0.1';
+$ImageBrowserVersion = '0.2';
 
 class ImageBrowser {
   function get_images($atts, $count=false) {
@@ -144,22 +144,18 @@ class ImageBrowser {
   /* displays the form for browsing images */
   function form($args) {
     extract($args);
-  ?>
-  <form name='imagebrowser'>
-  <label for='year'>year</label>
-  <?php echo $this->years_dropdown($year) ?>
-  <label for='month'>month</label>
-  <?php echo $this->months_dropdown($month) ?>
-  <label for='img_cat'>Category</label>
-  <?php
-  wp_dropdown_categories("name=img_cat&hierarchical=1&selected=$category&hide_empty=1&show_option_all=All&orderby=name");
-  ?>
-  <br />
-  <label for='keywords'><?php _e('keywords') ?></label>
-  <input type='text' name='keywords' value='<?=$keywords?>' />
-  <label for='sortby'><?php _e('Sort by') ?></label>
-  <select name='sortby'>
-  <?php
+    $form = "<form name='imagebrowser'>
+    <label for='year'>year</label>" . 
+       $this->years_dropdown($year) . 
+    "<label for='month'>month</label>" .
+    $this->months_dropdown($month)  .
+    "<label for='img_cat'>Category</label>" .
+      wp_dropdown_categories("name=img_cat&hierarchical=1&selected=$category&hide_empty=1&show_option_all=All&orderby=name&echo=0") .
+    "<br />
+    <label for='keywords'>" .  __('keywords') . "</label> " .
+    "<input type='text' name='keywords' value='$keywords' />" . 
+    "<label for='sortby'>" .  __('Sort by')  ."</label>" .
+    "<select name='sortby'>";
     $sort_options = array(
                   'post_title' => 'Post Title',
                   'post_date' => 'Date',
@@ -171,20 +167,21 @@ class ImageBrowser {
       } else {
         $selected = '';
       }
-      echo "<option value='$value' $selected>$label</option>\n";
+      $form .= "<option value='$value' $selected>$label</option>\n";
     }
-  ?>
-  </select>
-  <select name='sortorder'>
-    <option <?php if ($sortorder=='ASC') echo "selected='selected'"?> value='ASC'><?php _e('Ascending') ?></option>
-    <option <?php if ($sortorder=='DESC') echo "selected='selected'"?> value='DESC'><?php _e('Descending') ?></option>
-  </select>
-  <br />
-  <label for='limit'><?php _e('items per page') ?></label>
-  <input type='text' name='limit' value='<?=$limit?>' size='3' />
-  <input type='submit' value='browse images' />
-  </form>
-  <?php
+    $form .="</select>
+    <select name='sortorder'>";
+      $selected = ($sortorder=='ASC') ? "selected='selected'" : '';
+      $form .="<option $selected value='ASC'>" .  __('Ascending') . "</option>";
+      $selected = ($sortorder=='DESC') ? "selected='selected'" : '';
+      $form .="<option $selected value='DESC'>" .  __('Descending') . "</option>";
+      $form .="</select>
+      <br />
+    <label for='limit'>" .  __('items per page')  . "</label>" .
+    "<input type='text' name='limit' value='$limit' size='3' />" .
+    "<input type='submit' value='browse images' />
+    </form>";
+    return $form;
   }
 
   /* outputs the images */
