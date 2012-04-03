@@ -4,11 +4,11 @@ Plugin Name: Image Browser
 Plugin URI: http://blog.robfelty.com/plugins/image-browser
 Description: Allows you to browse all images on your blog easily <a href='options-general.php?page=image-browser'>Settings</a>
 Author: Robert Felty
-Version: 0.2
+Version: 0.3
 Author URI: http://robfelty.com
 */ 
 global $ImageBrowserVersion;
-$ImageBrowserVersion = '0.2';
+$ImageBrowserVersion = '0.3';
 
 class ImageBrowser {
   function get_images($atts, $count=false) {
