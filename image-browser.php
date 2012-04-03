@@ -47,7 +47,11 @@ class ImageBrowser {
     if ($category) {
       $catQuery ="AND $wpdb->terms.term_id='$category'";
     }
-    $sort = "ORDER BY $sortby $sortorder";
+    if ($sortorder=='RANDOM') {
+      $sort = "ORDER BY RAND()";
+    } else {
+      $sort = "ORDER BY $sortby $sortorder";
+    }
     $post_attrs .= " post_type = 'attachment' AND post_mime_type In
         ('image/gif', 'image/png', 'image/jpeg', 'image/jpg', 'jpg', 'jpeg', 
         'png', 'gif')";
@@ -175,6 +179,8 @@ class ImageBrowser {
       $form .="<option $selected value='ASC'>" .  __('Ascending') . "</option>";
       $selected = ($sortorder=='DESC') ? "selected='selected'" : '';
       $form .="<option $selected value='DESC'>" .  __('Descending') . "</option>";
+      $selected = ($sortorder=='RANDOM') ? "selected='selected'" : '';
+      $form .="<option $selected value='RANDOM'>" .  __('Random') . "</option>";
       $form .="</select>
       <br />
     <label for='limit'>" .  __('items per page')  . "</label>" .

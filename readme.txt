@@ -4,8 +4,8 @@ Donate link: http://blog.robfelty.com/plugins
 Plugin URI: http://blog.robfelty.com/plugins
 Tags: image, images, meta, search, shortcode
 Requires at least: 2.8
-Tested up to: 3.0.1
-Stable tag: 0.2
+Tested up to: 3.3.1
+Stable tag: 0.3
 
 Allows you to browse all images on your blog by date and/or category, with the
 ability to also search image captions for keywords.
@@ -78,6 +78,7 @@ Default options are listed below
 * sortorder - Order to sort by. Available options:
     * ASC - ascending order
     * DESC - descending order
+    * RANDOM - random order
 
 * page - which page to show
 
@@ -99,6 +100,9 @@ posts with category 10
 yes.
 
 == CHANGELOG ==
+
+= 0.2 (2012.04.02) =
+* Added random sort option
 
 = 0.2 (2010.08.04) =
 * fixed form display
